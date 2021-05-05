@@ -15,20 +15,29 @@ public class ListaDupla {
 		} else {
 			No auxi = cabeca;
 			int aux = getSum(nome);
-			for (int i = 0; i < aux - 1; i++) {
-				auxi = auxi.getProximo();
-			}
-			if (aux == tamanho) {
+			if(aux == 1) {
+				auxi.setAnterior(n);
+				n.setProximo(auxi);
+				cabeca = n;
+			} else if (aux == tamanho) {
 				n.setProximo(null);
 				n.setAnterior(auxi);
 				auxi.setProximo(n);
 				cauda = n;
-			} else {
+			} else if (aux == 2) {
+				auxi.setProximo(n);
+				n.setAnterior(auxi);
+				cabeca = auxi;
+			}
+			
+			{
 				if (aux == 0) {
+					auxi.setProximo(n);
+					n.setAnterior(auxi);
 					cabeca = auxi;
 				}
-				n.setAnterior(auxi);
-				auxi.setProximo(n);
+				//n.setProximo(auxi);
+				//auxi.setAnterior(n);
 			}
 		}
 		tamanho++;
@@ -37,30 +46,21 @@ public class ListaDupla {
 	public int getSum(String nome) {
 		No no = cabeca;
 		Controle c = new Controle();
-		boolean control = false;
-		for (int i = 0; i < c.getSize(); i++) {
 			int soma = 0;
 			int soma2 = 0;
 			for (int j = 0; j < nome.length() - 1; j++) {
 				soma += nome.toUpperCase().charAt(j);
 				soma2 += no.getNome().toUpperCase().charAt(j);
 				if (soma2 > soma) {
-					return i;
+					return 1;
 				} else if (soma > soma2) {
-					control = true;
-					break;
+					return 2;
 				}
 			}
-
-			if (control) {
-				no = no.getProximo();
-				continue;
-			}
 			if (soma == soma2) {
-				return i;
+				return 0;
 			}
-			no = no.getProximo();
-		}
+		
 		return c.getSize();
 	}
 
@@ -83,12 +83,22 @@ public class ListaDupla {
 
 	public String parseString() {
 		String str = "";
-		No local = cabeca;
-		while (local != null) {
-			str += local.getNome() + "\n";
-			local = local.getProximo();
-		}
-		return str;
+		No local = new No();
+		if(cabeca != null) {
+			local = cabeca;
+			if(local.getAnterior() != null) {
+				local = local.getAnterior();
+				str += local.getNome() + "\n";
+				local.setAnterior(null);
+				local = local.getProximo();
+			} while (local != null) {
+				str += local.getNome() + "\n";
+				local = local.getProximo();
+				}		
+			return str;
+		} else {
+			return str;
+		}		
 	}
 
 	public No getCabeca() {
