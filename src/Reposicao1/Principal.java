@@ -28,7 +28,9 @@ public class Principal {
 		c.add("Aastuncio");
 		c.add("Denis");
 		c.add("Daiane");
+		c.add("Luizeiro");
 		c.add("zelbert");
+		c.add("Luizada da Silva");
 		c.add("Barbara");
 		c.add("Luiz");
 		c.add("Luiza");
