@@ -70,10 +70,11 @@ public class ListaDupla {
 						}
 					}
 				} catch (Exception e) {
-					if(soma == soma2) {
+					if(soma == soma2 || soma > soma2) {
+						i++;
 						return i;
 					} else {
-						return ++i;
+						return i;
 					} 
 				}
 				
