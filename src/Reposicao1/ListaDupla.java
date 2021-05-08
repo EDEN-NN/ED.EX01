@@ -15,53 +15,67 @@ public class ListaDupla {
 		} else {
 			No auxi = cabeca;
 			int aux = getSum(nome);
-			if(aux == 1) {
-				auxi.setAnterior(n);
+			if (aux == 0) {
 				n.setProximo(auxi);
+				auxi.setAnterior(n);
 				cabeca = n;
-			} else if (aux == tamanho) {
-				n.setProximo(null);
-				n.setAnterior(auxi);
-				auxi.setProximo(n);
-				cauda = n;
-			} else if (aux == 2) {
-				auxi.setProximo(n);
-				n.setAnterior(auxi);
-				cabeca = auxi;
-			}
-			
-			{
-				if (aux == 0) {
+			} else {
+				for (int i = 0; i < aux; i++) {
+					if(auxi.getProximo() != null) {
+						auxi = auxi.getProximo();
+					} 
+				}
+				if (aux >= tamanho) {
 					auxi.setProximo(n);
 					n.setAnterior(auxi);
-					cabeca = auxi;
+					cauda = n;
+				} else {
+					if(auxi.getAnterior() != null) {
+						auxi.getAnterior().setProximo(n);
+					}
+				//	if(auxi.getProximo() != null) {
+					//	auxi.getProximo().setProximo(n);
+				//	}
+					n.setAnterior(auxi.getAnterior());
+					n.setProximo(auxi);
+					auxi.setAnterior(n);
 				}
-				//n.setProximo(auxi);
-				//auxi.setAnterior(n);
 			}
+			
 		}
 		tamanho++;
 	}
 
 	public int getSum(String nome) {
 		No no = cabeca;
-		Controle c = new Controle();
+		for (int i = 0; i <= tamanho; i++) {
 			int soma = 0;
 			int soma2 = 0;
 			for (int j = 0; j < nome.length() - 1; j++) {
 				soma += nome.toUpperCase().charAt(j);
 				soma2 += no.getNome().toUpperCase().charAt(j);
 				if (soma2 > soma) {
-					return 1;
+					return i;
 				} else if (soma > soma2) {
-					return 2;
+					if(no.getProximo() != null) {
+						no = no.getProximo();
+						soma = 0;
+						soma2 = 0;
+						j = 0;
+						i++;
+					} else {
+						i++;
+						return i;
+					}
 				}
 			}
 			if (soma == soma2) {
-				return 0;
+				return i;
 			}
+		}
 		
-		return c.getSize();
+
+		return tamanho;
 	}
 
 	public void exists(String nome, ListaDupla l) {
@@ -75,7 +89,7 @@ public class ListaDupla {
 					local = local.getProximo();
 				} else {
 					local = null;
-					System.out.println("Nome: " + nome  + " não existe!");
+					System.out.println("Nome: " + nome + " não existe!");
 				}
 			}
 		}
@@ -84,26 +98,26 @@ public class ListaDupla {
 	public String parseString() {
 		String str = "";
 		No local = new No();
-		if(cabeca != null) {
+		if (cabeca != null) {
 			local = cabeca;
-			if(local.getAnterior() != null) {
+			if (local.getAnterior() != null) {
 				local = local.getAnterior();
 				str += local.getNome() + "\n";
 				local.setAnterior(null);
 				local = local.getProximo();
-			} while (local != null) {
+			}
+			while (local != null) {
 				str += local.getNome() + "\n";
 				local = local.getProximo();
-				}		
+			}
 			return str;
 		} else {
 			return str;
-		}		
+		}
 	}
 
 	public No getCabeca() {
 		return cabeca;
 	}
-	
 
 }
