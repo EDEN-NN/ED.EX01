@@ -29,7 +29,7 @@ public class Principal {
 		c.add("Aastuncio");
 		c.add("Denis");
 		c.add("Daiane");
-		c.add("Cesar");;
+		c.add("Cesar");
 		c.add("Luizeiro");
 		c.add("zelbert");
 		c.add("Luizada da Silva");
@@ -37,6 +37,8 @@ public class Principal {
 		c.add("Luiz");
 		c.add("Luiza");
 		c.add("cu");
+		c.rename("zali", "Zalison");
+		c.rename("CALOVA", "caavalo");
 		c.exists("papi");
 		c.exists("Gabriel Monteiro");
 		c.exists("Gadelho");

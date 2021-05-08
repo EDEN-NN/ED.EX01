@@ -15,6 +15,22 @@ public class Controle {
 		vet[i].add(nome);
 		size++;
 	}
+	
+	public void rename(String nome, String rename) {
+		if(exists(nome)) {
+			int index = indice(nome);
+			ListaDupla l = vet[index];
+			l.rename(nome, rename);
+		}
+	}
+	
+	public void delete(String nome) {
+		if(exists(nome)) {
+			int index = indice(nome);
+			ListaDupla l = vet[index];
+			l.delete(nome);
+		}
+	} 
 
 	public void print() {
 
@@ -26,13 +42,15 @@ public class Controle {
 
 	}
 
-	public void exists(String nome) {
+	public boolean exists(String nome) {
 		int index = indice(nome);
 		if (index != -1) {
 			ListaDupla l = vet[index];
 			l.exists(nome, l);
+			return true;
 		} else {
 			System.out.println("Nome inexistente!");
+			return false;
 		}
 	}
 	

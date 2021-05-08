@@ -45,6 +45,39 @@ public class ListaDupla {
 		}
 		tamanho++;
 	}
+	
+	public void rename(String nome, String n) {
+		No local = cabeca;
+		while (local != null) {
+			if(local.getNome().equalsIgnoreCase(nome.toUpperCase())) {
+			delete(nome);
+			add(n);
+			break;
+			} else {
+				local = local.getProximo();
+			}
+		}
+	}
+	
+	public void delete(String nome) {
+		No local = cabeca;
+		while (local != null) {
+			if(local.getNome().equalsIgnoreCase(nome)) {
+				if(local.getAnterior() == null) {
+					cabeca = local.getProximo();
+					tamanho--;
+					break;
+				} else {
+					local.getAnterior().setProximo(local.getProximo());
+					local.getProximo().setAnterior(local.getAnterior());
+					tamanho--;
+					break;
+				}
+			} else {
+				local = local.getProximo();
+			}
+		}
+	}
 
 	public int getSum(String nome) {
 		No no = cabeca;
