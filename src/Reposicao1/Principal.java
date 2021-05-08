@@ -16,6 +16,7 @@ public class Principal {
 		c.add("gadelho");
 		c.add("gads");
 		c.add("Kenzao");
+		c.add("Beatriz");
 		c.add("kenzito");
 		c.add("zaaz");
 		c.add("zali");
@@ -28,12 +29,14 @@ public class Principal {
 		c.add("Aastuncio");
 		c.add("Denis");
 		c.add("Daiane");
+		c.add("Cesar");;
 		c.add("Luizeiro");
 		c.add("zelbert");
 		c.add("Luizada da Silva");
 		c.add("Barbara");
 		c.add("Luiz");
 		c.add("Luiza");
+		c.add("cu");
 		c.exists("papi");
 		c.exists("Gabriel Monteiro");
 		c.exists("Gadelho");

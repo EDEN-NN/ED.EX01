@@ -51,23 +51,32 @@ public class ListaDupla {
 		for (int i = 0; i <= tamanho; i++) {
 			int soma = 0;
 			int soma2 = 0;
-			for (int j = 0; j < nome.length() - 1; j++) {
-				soma += nome.toUpperCase().charAt(j);
-				soma2 += no.getNome().toUpperCase().charAt(j);
-				if (soma2 > soma) {
-					return i;
-				} else if (soma > soma2) {
-					if(no.getProximo() != null) {
-						no = no.getProximo();
-						soma = 0;
-						soma2 = 0;
-						j = 0;
-						i++;
-					} else {
-						i++;
+			for (int j = 0; j < nome.length(); j++) {
+				try {
+					soma += nome.toUpperCase().charAt(j);
+					soma2 += no.getNome().toUpperCase().charAt(j);
+					if (soma2 > soma) {
 						return i;
+					} else if (soma > soma2) {
+						if(no.getProximo() != null) {
+							no = no.getProximo();
+							soma = 0;
+							soma2 = 0;
+							j = 0;
+							i++;
+						} else {
+							i++;
+							return i;
+						}
 					}
+				} catch (Exception e) {
+					if(soma == soma2) {
+						return i;
+					} else {
+						return ++i;
+					} 
 				}
+				
 			}
 			if (soma == soma2) {
 				return i;
