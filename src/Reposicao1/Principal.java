@@ -1,49 +1,43 @@
 package Reposicao1;
 
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Principal {
 
 	public static void main(String[] args) {
-		
-		Controle c = new Controle();
-		
-		
-		c.add("Pedrada");
-		c.add("Paula Tejando");
-		c.add("Cavalo");
-		c.add("Calova");
-		c.add("gadelho");
-		c.add("gads");
-		c.add("Kenzao");
-		c.add("Beatriz");
-		c.add("kenzito");
-		c.add("zaaz");
-		c.add("zali");
-		c.add("zULEIKA");
-		c.add("Days");
-		c.add("amora");
-		c.add("brunin");
-		c.add("alura");
-		c.add("zuckerberg");
-		c.add("Aastuncio");
-		c.add("Denis");
-		c.add("Daiane");
-		c.add("Cesar");
-		c.add("Luizeiro");
-		c.add("zelbert");
-		c.add("Luizada da Silva");
-		c.add("Barbara");
-		c.add("Luiz");
-		c.add("Luiza");
-		c.add("cu");
-		c.rename("zali", "Zalison");
-		c.rename("CALOVA", "caavalo");
-		c.exists("papi");
-		c.exists("Gabriel Monteiro");
-		c.exists("Gadelho");
-		c.print();
-		c.size();
-	}
 
+		int opc = 99;
+		Controle c = new Controle();
+		while (opc != 0) {
+			opc = Integer.parseInt(JOptionPane.showInputDialog("1 - Adicionar Nome \n" + "2 - Remover Nome  \n"
+					+ "3 - Renomear \n" + "4 - Verificar se o nome existe \n" + "5 - Mostrar Lista Completa \n"
+					+ "6 - Mostrar Tamanho da Lista \n"
+					+ "0 - Sair"));
+			switch (opc) {
+			case 1:
+				c.add(JOptionPane.showInputDialog("Digite o nome a ser adicionado!"));
+				break;
+			case 2:
+				c.delete(JOptionPane.showInputDialog("Digite o nome a ser excluído"));
+				break;
+			case 3:
+				c.rename(JOptionPane.showInputDialog("Digite o nome que deseja trocar"),
+						JOptionPane.showInputDialog("Digite o nome que deseja inserir"));
+				break;
+			case 4:
+				c.exists(JOptionPane.showInputDialog("Digite o nome que deseja verificar"));
+				break;
+			case 5:
+				c.print();
+				break;
+			case 6 : 
+				c.getSize(JOptionPane.showInputDialog(null, "Digite o nome para a lista desejada!"));
+			case 0:
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Entrada Inválida! Digite novamente.");
+			}
+		}
+
+	}
 }

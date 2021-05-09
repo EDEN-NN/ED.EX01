@@ -1,5 +1,7 @@
 package Reposicao1;
 
+import javax.swing.JOptionPane;
+
 public class ListaDupla {
 	private No cabeca;
 	private No cauda;
@@ -33,9 +35,6 @@ public class ListaDupla {
 					if(auxi.getAnterior() != null) {
 						auxi.getAnterior().setProximo(n);
 					}
-				//	if(auxi.getProximo() != null) {
-					//	auxi.getProximo().setProximo(n);
-				//	}
 					n.setAnterior(auxi.getAnterior());
 					n.setProximo(auxi);
 					auxi.setAnterior(n);
@@ -44,6 +43,7 @@ public class ListaDupla {
 			
 		}
 		tamanho++;
+		JOptionPane.showMessageDialog(null, "Nome " + nome + " adicionado com sucesso!");
 	}
 	
 	public void rename(String nome, String n) {
@@ -66,11 +66,13 @@ public class ListaDupla {
 				if(local.getAnterior() == null) {
 					cabeca = local.getProximo();
 					tamanho--;
+					JOptionPane.showMessageDialog(null, "Nome " + nome + " excluído com sucesso!");
 					break;
 				} else {
 					local.getAnterior().setProximo(local.getProximo());
 					local.getProximo().setAnterior(local.getAnterior());
 					tamanho--;
+					JOptionPane.showMessageDialog(null, "Nome " + nome + " excluído com sucesso!");
 					break;
 				}
 			} else {
@@ -121,34 +123,30 @@ public class ListaDupla {
 		return tamanho;
 	}
 
-	public void exists(String nome, ListaDupla l) {
-		No local = l.getCabeca();
+	public void exists(String nome) {
+		if (cabeca != null) {
+		No local = cabeca;
 		while (local != null) {
 			if (local.getNome().toUpperCase().equals(nome.toUpperCase())) {
-				System.out.println("Nome: " + nome + " existe");
 				local = null;
-			} else {
-				if (local.getProximo() != null) {
+				JOptionPane.showMessageDialog(null, "Esse nome existe!");
+			} else if (local.getProximo() != null) {
 					local = local.getProximo();
 				} else {
+					JOptionPane.showMessageDialog(null, "Esse nome não existe!");
 					local = null;
-					System.out.println("Nome: " + nome + " não existe!");
+				} 	
 				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Esse nome não existe!");
 			}
 		}
-	}
 
 	public String parseString() {
 		String str = "";
 		No local = new No();
 		if (cabeca != null) {
 			local = cabeca;
-			if (local.getAnterior() != null) {
-				local = local.getAnterior();
-				str += local.getNome() + "\n";
-				local.setAnterior(null);
-				local = local.getProximo();
-			}
 			while (local != null) {
 				str += local.getNome() + "\n";
 				local = local.getProximo();
@@ -159,8 +157,8 @@ public class ListaDupla {
 		}
 	}
 
-	public No getCabeca() {
-		return cabeca;
+	public void getTamanho() {
+		JOptionPane.showMessageDialog(null, "Tamanho da lista: " + tamanho);
 	}
 
 }

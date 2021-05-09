@@ -1,7 +1,8 @@
 package Reposicao1;
 
+import javax.swing.JOptionPane;
+
 public class Controle {
-	private int size = 0;
 	ListaDupla vet[] = new ListaDupla[26];
 
 	public Controle() {
@@ -13,7 +14,6 @@ public class Controle {
 	public void add(String nome) {
 		int i = indice(nome);
 		vet[i].add(nome);
-		size++;
 	}
 	
 	public void rename(String nome, String rename) {
@@ -38,7 +38,7 @@ public class Controle {
 		for (int i = 0; i < 26; i++) {
 			str += vet[i].parseString();
 		}
-		System.out.println(str);
+		JOptionPane.showMessageDialog(null, str);
 
 	}
 
@@ -46,20 +46,23 @@ public class Controle {
 		int index = indice(nome);
 		if (index != -1) {
 			ListaDupla l = vet[index];
-			l.exists(nome, l);
+			l.exists(nome);
 			return true;
 		} else {
-			System.out.println("Nome inexistente!");
+			JOptionPane.showMessageDialog(null, "Esse nome não existe.");
 			return false;
 		}
 	}
 	
-	public void size() {
-		System.out.println("#Tamanho da lista: " + size);
-	} 
-	
-	public int getSize() {
-		return size;
+	public void getSize(String nome) {
+		int index = indice(nome);
+		if(index != -1) {
+			ListaDupla l = vet[index];
+			l.getTamanho();
+		} else {
+			JOptionPane.showMessageDialog(null, "Lista Inválida");
+		}
+		
 	}
 
 	public int indice(String nome) {
